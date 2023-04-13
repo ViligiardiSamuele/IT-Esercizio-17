@@ -19,8 +19,19 @@ public class Convertitore extends JFrame {
                 new ActionListener()
                 {
                     @Override public void actionPerformed(ActionEvent e) {
-                        if(!JTF_celsius.getText().isEmpty() && !JTF_kelvin.getText().isEmpty()) {
-
+                        try{
+                            if(!JTF_celsius.getText().isEmpty()){
+                                JTF_kelvin.setText(String.valueOf(Double.parseDouble(JTF_celsius.getText()) + 273.15));
+                                JTF_celsius.setText("");
+                            }
+                            else if(!JTF_kelvin.getText().isEmpty()){
+                                JTF_celsius.setText(String.valueOf(Double.parseDouble(JTF_kelvin.getText()) - 273.15));
+                                JTF_kelvin.setText("");
+                            }
+                        } catch (NumberFormatException ex){
+                            JOptionPane.showMessageDialog(null, "Inserisci un numero");
+                            JTF_celsius.setText("");
+                            JTF_kelvin.setText("");
                         }
                     }
                 }
